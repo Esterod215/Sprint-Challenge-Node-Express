@@ -75,10 +75,7 @@ server.delete('/api/projects/:id', (req, res) => {
   server.put('/api/projects/:id', (req, res) => {
     const { id } = req.params;
     const { name, description } = req.body;
-    if (!name || !description) {
-      res.status(400).json({message:'Must provide name and description'});
-      return;
-    }
+    
     dbProjects
       .update(id, { name, description })
       .then(response => {
@@ -172,10 +169,7 @@ server.delete('/api/actions/:id', (req, res) => {
   server.put('/api/actions/:id', (req, res) => {
     const { id } = req.params;
     const { project_id,notes, description } = req.body;
-    if (!notes || !description || !project_id) {
-      res.status(400).json({message:'Must provide project_id ,notes and description'});
-      return;
-    }
+    
     dbActions
       .update(id, { notes, description,project_id })
       .then(response => {
